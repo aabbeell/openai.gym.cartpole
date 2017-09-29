@@ -17,9 +17,9 @@ def run_episode(env, parameters):
     totalreward = 0
     # for 200 timesteps
     for _ in range(200):
+
         #env.render()
-        # initalize random weights
-        action = 0 if np.matmul(parameters, observation)<0 else 1
+        action = 0 if np.matmul(parameters, observation) < 0 else 1
         observation, reward, done, info = env.step(action)
         totalreward += reward
         if done:
@@ -35,7 +35,7 @@ def hillclimb(noise_scaling):
 
     # 2000 episodes
     for x in range(2000):
-        newparams = parameters + (np.random.rand(4) *2 -1) * noise_scaling
+        newparams = parameters + (np.random.rand(4) * 2 - 1) * noise_scaling
         reward = run_episode(env, newparams)
         # print("%f - %d : reward %d best %d" % (noise_scaling, x, reward, bestreward))
         if reward > bestreward:
@@ -55,3 +55,4 @@ for x in range(60,110,5):
 
 plt.plot(lr, avg_list)
 plt.show()
+
